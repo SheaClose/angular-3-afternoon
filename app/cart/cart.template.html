@@ -1,25 +1,28 @@
 <div class="cart__parent">
   <div class="cart__child">
-    
-    <div ng-if="" class="cart__with-items">
+
+    <div ng-if="cartCtrl.cart.length" class="cart__with-items">
       <div class="cart__top">
         <h4 class="cart__header">Cart</h4>
 
         <div class="cart__top-right">
-          <span class="cart__total">Total: <!-- Total Here --></span>
-          <button class="cart__btn-checkout" ng-click="">checkout</button>
+          <span class="cart__total">Total: {{cartCtrl.total() | currency}}</span>
+          <button class="cart__btn-checkout" ng-click="cartCtrl.checkout()">checkout</button>
         </div>
       </div>
 
       <div class="cart__bottom">
-        <!-- Swag Here -->
+        <swag item="item" action="cartCtrl.removeItem($index)" action-label="Remove Item" ng-repeat="item in cartCtrl.cart track by $index"></swag>
       </div>
     </div>
 
-    <div ng-if="" class="cart__without-items">
+    <div ng-if="!cartCtrl.cart.length" class="cart__without-items">
       <span>Nothing in your cart</span>
     </div>
 
   </div>
 </div>
-  
+
+<!-- item: "< ",
+action: "& ",
+actionLabel: "@ " -->
